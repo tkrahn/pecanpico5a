@@ -77,6 +77,7 @@ void RadioSi446x::SendCmdReceiveAnswer(int byteCountTx, int byteCountRx, const c
     int reply = 0x00;
     while (reply != 0xFF)
     {       
+        SPI.transfer(0x44);  // added because CTS state is trasnmitted *after* issuing 0x44, not while.
        reply = SPI.transfer(0x44);
 //       Serial.print(reply,HEX);
 //       Serial.print(" ");
